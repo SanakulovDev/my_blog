@@ -1,0 +1,1 @@
+<h2>Salom dunyo <?=$id?></h2>
