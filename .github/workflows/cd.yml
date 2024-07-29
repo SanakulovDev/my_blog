@@ -1,14 +1,12 @@
-# .github/workflows/ci.yml
-name: CI
+# .github/workflows/cd.yml
+name: CD
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +16,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '7.4'
           extensions: mbstring, intl
           ini-values: |
             post_max_size=256M
@@ -30,3 +28,13 @@ jobs:
 
       - name: Run tests
         run: ./vendor/bin/phpunit
+
+      - name: Deploy to Server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan your_server_ip >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/id_rsa user@your_server_ip "cd /path/to/app && git pull origin main && composer install"
