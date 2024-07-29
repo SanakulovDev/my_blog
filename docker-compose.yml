@@ -11,7 +11,7 @@ services:
         volumes:
             - '.:/var/www/html'
         depends_on:
-            - db
+            - pgsql
         networks:
             - app-network
         environment:
@@ -19,7 +19,7 @@ services:
             - APP_DEBUG=true
             - 'APP_KEY=base64:bd7y0bNph9lHPy79pQQq49eA6iIS9WJuunalqh5P24Y='
             - DB_CONNECTION=pgsql
-            - DB_HOST=db
+            - DB_HOST=pgsql
             - DB_PORT=5432
             - DB_DATABASE=my_blog
             - DB_USERNAME=postgres
@@ -36,19 +36,9 @@ services:
             - app
         networks:
             - app-network
-    db:
+    pgsql:
         image: 'postgres:16'
         container_name: my_blog_db
-        environment:
-            POSTGRES_DB: my_blog
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-        volumes:
-            - 'db-data:/var/lib/postgresql/data'
-        networks:
-            - app-network
-    pgsql:
-        image: 'postgres:15'
         ports:
             - '${FORWARD_DB_PORT:-5432}:5432'
         environment:
@@ -60,7 +50,7 @@ services:
             - 'sail-pgsql:/var/lib/postgresql/data'
             - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
         networks:
-            - sail
+            - app-network
         healthcheck:
             test:
                 - CMD
@@ -73,7 +63,6 @@ services:
             retries: 3
             timeout: 5s
 volumes:
-    db-data: null
     sail-pgsql:
         driver: local
 networks:
