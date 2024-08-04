@@ -14,8 +14,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::all();
-        return view('profiles.index', compact('profiles'));
+        $profile = Profile::all();
+        return view('profile.index', compact('profile'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('profiles.create');
+        return view('profile.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class ProfileController extends Controller
         ]);
 
         Profile::create($request->all());
-        return redirect()->route('profiles.index')
+        return redirect()->route('profile.index')
                          ->with('success', 'Profile created successfully.');
     }
 
@@ -54,7 +54,7 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        return view('profiles.show', compact('profile'));
+        return view('profile.show', compact('profile'));
     }
 
     /**
@@ -65,7 +65,7 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
-        return view('profiles.edit', compact('profile'));
+        return view('profile.edit', compact('profile'));
     }
 
     /**
@@ -83,7 +83,7 @@ class ProfileController extends Controller
         ]);
 
         $profile->update($request->all());
-        return redirect()->route('profiles.index')
+        return redirect()->route('profile.index')
                          ->with('success', 'Profile updated successfully.');
     }
 
@@ -96,7 +96,7 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         $profile->delete();
-        return redirect()->route('profiles.index')
+        return redirect()->route('profile.index')
                          ->with('success', 'Profile deleted successfully.');
     }
 }

@@ -15,4 +15,4 @@ Route::get('/site/index/{id}/user', function ($id) {
 
 
 // Route::get('/profile/index', [ProfileController::class, 'index']);
-Route::resource('profiles', ProfileController::class);
+Route::resource('profile', ProfileController::class);

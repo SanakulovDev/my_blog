@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Create Profile</h1>
-    <form action="{{ route('profiles.store') }}" method="POST">
+    <form action="{{ route('profile.store') }}" method="POST">
         @csrf
         <div>
             <label for="name">Name:</label>
