@@ -43,6 +43,6 @@ RUN npm install && npm run build
 RUN composer dump-autoload && composer run-script post-root-package-install
 
 # FPM'ni port 9000 orqali tinglash
-EXPOSE 9000
+EXPOSE 9000 5173
 
-CMD ["php-fpm"]
+CMD ["php-fpm"] && npm run dev

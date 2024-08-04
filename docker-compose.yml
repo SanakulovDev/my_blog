@@ -7,6 +7,7 @@ services:
         container_name: my_blog
         ports:
             - '9000:9000'
+            - "5173:5173"
         volumes:
             - '.:/var/www/html'
         depends_on:
