@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1>Posts List</h1>
-        <a href="{{ route('posts.create') }}" class="btn btn-blue bg-primary text-white">Create New Post</a>
+        <a href="{{ route('posts.create') }}" class="btn bg-primary text-white">Create New Post</a>
         <table class="table table-border table-striped">
             @foreach($posts as $post)
                 <tr>
