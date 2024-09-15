@@ -1,19 +1,24 @@
-{{-- resources/views/posts/create.blade.php --}}
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
-    <h1>Create New Post</h1>
+    <x-slot name="header">
+        <h4>Create New Post</h4>
+    </x-slot>
 
-    <form action="{{ route('posts.store') }}" method="POST">
-        @csrf
-        <div>
-            <label>Title:</label>
-            <input type="text" name="title" required>
-        </div>
-        <div>
-            <label>Body:</label>
-            <textarea name="body" required></textarea>
-        </div>
-        <button type="submit">Submit</button>
-    </form>
-@endsection
+    <div class="container mt-4">
+        <form action="{{ route('posts.store') }}" method="POST">
+            @csrf
+            <div class="form-group mb-3">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="body">Body:</label>
+                <textarea class="form-control" id="body" name="body" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</x-app-layout>
