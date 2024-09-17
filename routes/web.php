@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('posts', PostController::class);
 // Route::middleware('posts')->group(function () {
-//     // Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+//     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 //     Route::get('/posts', [PostController::class, 'create'])->name('posts.create');
 //     Route::patch('/posts', [PostController::class, 'update'])->name('posts.update');
 //     Route::delete('/posts', [PostController::class, 'delete'])->name('posts.delete');
