@@ -20,12 +20,16 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::resource('posts', PostController::class);
-// Route::middleware('posts')->group(function () {
-//     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-//     Route::get('/posts', [PostController::class, 'create'])->name('posts.create');
-//     Route::patch('/posts', [PostController::class, 'update'])->name('posts.update');
-//     Route::delete('/posts', [PostController::class, 'delete'])->name('posts.delete');
-// });
+// Route::resource('posts', PostController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/posts/index', [PostController::class, 'index'])->name('posts.index'); // Barcha postlarni ko'rsatish
+    Route::get('/posts/{post}/show', [PostController::class, 'show'])->name('posts.show'); // Barcha postlarni ko'rsatish
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create'); // Yangi post yaratish sahifasi
+    Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store'); // Yangi postni saqlash
+    Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit'); // Postni tahrirlash sahifasi
+    Route::patch('/posts/{id}/update', [PostController::class, 'update'])->name('posts.update'); // Postni yangilash
+    Route::delete('/posts/{id}/destroy', [PostController::class, 'destroy'])->name('posts.destroy'); // Postni o'chirish
+});
 
 require __DIR__.'/auth.php';
