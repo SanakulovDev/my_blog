@@ -28,11 +28,17 @@ class PostFactory extends Factory
                     'ru' => $this->faker->paragraph(5, true),
                     'en' => $this->faker->paragraph(5, true),
                 ],
-                'image' => $this->faker->imageUrl(640, 480, 'animals',true),
+                'image' => [
+                    'url' => $this->faker->imageUrl(640, 480, 'animals',true),
+                    'alt' => [
+                        'uz' => $this->faker->word(),
+                        'ru' => $this->faker->word(),
+                        'en' => $this->faker->word(),
+                    ]
+                ],
 
             ]),
             
-            // $this->faker->paragraphs(5, true), // Fake body yaratish (5 paragraph)
             'user_id' => \App\Models\User::factory(), // Random user ID
             'category_id' => \App\Models\Category::factory(), // Random category ID
             'description' => json_encode([

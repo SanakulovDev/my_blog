@@ -10,6 +10,7 @@
                 <tr class="bg-dark">
                     <th>ID</th>
                     <th>Title</th>
+                    <th>Description</th>
                     <th>Body</th>
                     <th class="w-50">Action Buttons</th>
                 </tr>
@@ -20,23 +21,24 @@
                     <tr>
 
                         <td>{{ $post->id }}</td>
-                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->getTitle() }}</td>
+                        <td>{{ $post->getDescription() }}</td>
                         <td>{{ $post->body }}</td>
                         <td>
                             <a href="{{ route('posts.show', $post->id) }}">
                                 <i class="fas fa-eye"></i>
-                            </a>
+                           d </a>
                         
                             <a href="{{ route('posts.edit', $post->id) }}">
                                 <i class="fas fa-edit"></i>
                             </a>
                     
 
-                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                            {{-- <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"><i class="fas fa-delete"></i></button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach
