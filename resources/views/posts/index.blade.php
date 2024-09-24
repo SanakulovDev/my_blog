@@ -21,13 +21,13 @@
                     <tr>
 
                         <td>{{ $post->id }}</td>
-                        <td>{{ $post->getTitle() }}</td>
-                        <td>{{ $post->getDescription() }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->description }}</td>
                         <td>{{ $post->body }}</td>
                         <td>
                             <a href="{{ route('posts.show', $post->id) }}">
                                 <i class="fas fa-eye"></i>
-                           d </a>
+                            </a>
                         
                             <a href="{{ route('posts.edit', $post->id) }}">
                                 <i class="fas fa-edit"></i>
